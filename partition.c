@@ -79,7 +79,6 @@ static PartTable def_part_table =
     }
 };
 
- 
 static void copy_mbr(u8 *disk)
 {
     memset(disk, 0x0, MBR_SIZE);
@@ -87,14 +86,7 @@ static void copy_mbr(u8 *disk)
     memcpy(disk + PARTITION_TABLE_OFFSET, &def_part_table, PARTITION_TABLE_SIZE);
     *(unsigned short *)(disk + MBR_SIGNATURE_OFFSET) = MBR_SIGNATURE;
 }
-static void copy_br(u8 *disk, int start_cylinder, const PartTable *part_table)
-{
-    disk += (start_cylinder * 32 /* sectors / cyl */ * SECTOR_SIZE);
-    memset(disk, 0x0, BR_SIZE);
-    memcpy(disk + PARTITION_TABLE_OFFSET, part_table,
-        PARTITION_TABLE_SIZE);
-    *(unsigned short *)(disk + BR_SIGNATURE_OFFSET) = BR_SIGNATURE;
-}
+
 void copy_mbr_n_br(u8 *disk)
 {
     int i;
