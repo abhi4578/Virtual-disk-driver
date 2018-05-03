@@ -20,9 +20,13 @@ The second step is to provide the device file operations, through the struct
 block_device_operations(prototyped in <linux/blkdev.h>) for the registered major
 number device files.
 These following things should be provided along with block operations
+
 • The request queue for queuing the read/write requests
+
 • The spin lock associated with the request queue to protect its concurrent access
+
 • The request function to process the requests in the request queue
+
 The request queue contains struct request which has details of direction of transfer , starting
 sector of the data transfer , size of the sector and number of sectors.
 Each request in the queue maybe either read or write. Read / write is implemented using
