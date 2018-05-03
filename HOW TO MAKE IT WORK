@@ -1,0 +1,20 @@
+# How to MAKE IT WORK
+Make sure Makefile,all C files are in same directory
+Type the following command in terminal to get the driver and virtual hard disk working  :
+make -C /lib/modules/$(uname -r)/build M=$PWD - this leads to creation of .ko(dor.ko) and .o(dor.o) files.
+
+sudo insmod ./dor.ko - inserts module into kernal and creates /dev/rb block device file for VHD
+
+use cat to write/read into the /dev/rb
+
+See the syslog for better understanding of working of driver using command: tail -f /var/log/syslog
+
+To check if device has been registered or the mjor number of device using command : cat /proc/devices
+
+Format the VHD into vfat file system using command: mkfs.vfat /dev/rb
+
+mount the formatted VHD filesystem : mount -t vfat /dev/rb  "any location you want to mount eg: /mnt/"
+
+umount "the location of mounting" - unmounts the VHD
+
+sudo rmmod dor.ko - removes the module from kernal.
