@@ -7,7 +7,9 @@ device.Virtual disks and virtual drives are common components of virtual machine
 virtualization, but they are also widely used for various purposes unrelated to virtualization, such
 as for the creation of logical disks.
 In this project we have tried to implement a Driver for Virtual Hard disk in 
+
 i)linux,Ubuntu 16.04.1 
+
 ii) version (can be found  by using command uname -r in terminal): 4.13.0-39-generic (the code might need slight modification if your using other versions)
 
 # Implementation details
